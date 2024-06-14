@@ -2,21 +2,47 @@
   <div>
     <h2>Transactions from {{ startDate }} to {{ endDate }}</h2>
     <table mat-table [dataSource]="transactions">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let transaction"> {{ transaction.id }} </td>
+      </ng-container>
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let transaction"> {{ transaction.date | date }} </td>
       </ng-container>
       <ng-container matColumnDef="comments">
         <th mat-header-cell *matHeaderCellDef> Comments </th>
-        <td mat-cell *matCellDef="let transaction"> {{ transaction.comments }} </td>
+        <td mat-cell *matCellDef="let transaction"> {{ transaction.Comments }} </td>
       </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let transaction"> View </td>
+        <td mat-cell *matCellDef="let transaction">
+          <button mat-button (click)="viewTransaction(transaction)">View</button>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="['date', 'comments', 'action']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['date', 'comments', 'action'];"></tr>
     </table>
   </div>
+</div>
+
+<div *ngIf="selectedTransaction">
+  <h2>Transaction Details</h2>
+  <p><strong>ID:</strong> {{ selectedTransaction.id }}</p>
+  <p><strong>Date:</strong> {{ selectedTransaction.date | date }}</p>
+  <p><strong>Comments:</strong> {{ selectedTransaction.Comments }}</p>
+  <p><strong>Amount:</strong> {{ selectedTransaction.Amount }}</p>
+  <p><strong>Sender Information:</strong></p>
+  <p><strong>First Name -- </strong> {{ selectedTransaction.sender.firstName}}</p>
+  <p><strong>Last Name -- </strong> {{ selectedTransaction.sender.lastName}}</p>
+  <p><strong>Date Of Birth -- </strong> {{ selectedTransaction.sender.dateOfBirth}}</p>
+  <p><strong>ID Number -- </strong> {{ selectedTransaction.sender.IDNumber}}</p>
+  <p><strong>Recipient Information:</strong> {{ selectedTransaction.recipient }}</p>
+  <p><strong>First Name -- </strong> {{ selectedTransaction.recipient.firstName}}</p>
+  <p><strong>Last Name -- </strong> {{ selectedTransaction.recipient.lastName}}</p>
+  <p><strong>Email -- </strong> {{ selectedTransaction.recipient.email}}</p>
+  <p><strong>Account Number -- </strong> {{ selectedTransaction.recipient.accountNumber}}</p>
+  <p><strong>Bank -- </strong> {{ selectedTransaction.recipient.bank}}</p>
+
 </div>
 
