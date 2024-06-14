@@ -7,17 +7,21 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
 import {TransactionService} from "./services/transaction.service";
+import {TransactionDetailComponent} from "./components/transaction-detail/transaction-detail.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    TransactionDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [TransactionService],
   bootstrap: [AppComponent]
