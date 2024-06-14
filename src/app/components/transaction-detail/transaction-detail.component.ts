@@ -26,8 +26,17 @@ export class TransactionDetailComponent implements OnInit {
   }
 
   save() {
-    this.transactionService.updateTransaction(this.transaction).add(() => {
-      this.router.navigate(['/']);
-    })
+    if (this.transaction && this.isAlphanumeric(this.transaction.Comments)) {
+      this.transactionService.updateTransaction(this.transaction).add(() => {
+        this.router.navigate(['/']);
+      })
+    } else {
+      alert('Comments must be alphanumeric and can only contain spaces.');
+    }
+  }
+
+  isAlphanumeric(input: string): boolean {
+    const regex = /^[A-Za-z0-9 ]*$/;
+    return regex.test(input);
   }
 }

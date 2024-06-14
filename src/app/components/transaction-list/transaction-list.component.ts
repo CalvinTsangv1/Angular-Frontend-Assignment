@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./transaction-list.component.css']
 })
 export class TransactionListComponent implements OnInit {
-  transactions: any[] = [];
+  transactions: Transaction[] = [];
   selectedTransaction: any;
   startDate: string = '2009-10-01'; // Default start date
   endDate: string = '2022-10-15'; // Default end date
